@@ -1,0 +1,4 @@
+pymumble
+python-decouple
+numpy
+Pillow
