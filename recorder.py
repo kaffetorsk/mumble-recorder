@@ -16,7 +16,7 @@ import shutil
 
 FFMPEG_OUT = config('FFMPEG_OUT')
 STEP = config('STEP', default=0.001, cast=float)
-BUFFER = config('ACTIVE_TIMEOUT', default=2, cast=int)
+BUFFER = config('BUFFER', default=2, cast=int)
 ACTIVE_TIMEOUT = config('ACTIVE_TIMEOUT', default=1, cast=int)
 BITRATE = config('BITRATE', default=48000, cast=int)
 
