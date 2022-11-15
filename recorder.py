@@ -187,7 +187,11 @@ class Recorder():
             fill='white',
             font=ImageFont.truetype('fonts/CenturyGothic.ttf', 25))
 
-        img.save(os.path.join(self.cache_path, 'view.jpg'))
+        img.save(os.path.join(self.cache_path, 'next.jpg'))
+        os.replace(
+            os.path.join(self.cache_path, 'next.jpg'),
+            os.path.join(self.cache_path, 'view.jpg')
+            )
 
     async def stop(self):
         try:
