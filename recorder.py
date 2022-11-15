@@ -19,6 +19,7 @@ STEP = config('STEP', default=0.001, cast=float)
 BUFFER = config('BUFFER', default=2, cast=int)
 ACTIVE_TIMEOUT = config('ACTIVE_TIMEOUT', default=1, cast=int)
 BITRATE = config('BITRATE', default=48000, cast=int)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 
 class Recorder():
@@ -140,6 +141,7 @@ class Recorder():
         showing active users and timestamp.
         """
         read, write = os.pipe()
+        stderr = None if DEBUG else subprocess.DEVNULL
         proc = await asyncio.create_subprocess_exec(
             *([
                 'ffmpeg',
@@ -155,8 +157,7 @@ class Recorder():
                 ] + shlex.split(
                     FFMPEG_OUT.format(name=self.chan['name'].lower())
                 )),
-            stdin=read, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
-            # stdin=read, stdout=subprocess.DEVNULL, stderr=None
+            stdin=read, stdout=subprocess.DEVNULL, stderr=stderr
             )
         return proc, write
 
