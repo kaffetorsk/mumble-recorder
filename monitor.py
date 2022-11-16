@@ -28,6 +28,7 @@ class Monitor():
                      self.port, self.password, chan)
             for chan in self.client.channels.values()
             ]
+        self.client.stop()
 
         tasks = []
         for r in self.recorders:

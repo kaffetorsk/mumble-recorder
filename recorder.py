@@ -18,7 +18,7 @@ FFMPEG_OUT = config('FFMPEG_OUT')
 STEP = config('STEP', default=0.001, cast=float)
 BUFFER = config('BUFFER', default=2, cast=int)
 ACTIVE_TIMEOUT = config('ACTIVE_TIMEOUT', default=1, cast=int)
-BITRATE = config('BITRATE', default=48000, cast=int)
+SAMPLE_RATE = config('SAMPLE_RATE', default=48000, cast=int)
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 
@@ -96,7 +96,7 @@ class Recorder():
         https://github.com/Robert904/mumblerecbot
         """
         next_view_update = 0
-        base_chunk = np.zeros(shape=(int(BITRATE * STEP)), dtype='<i2')
+        base_chunk = np.zeros(shape=(int(SAMPLE_RATE * STEP)), dtype='<i2')
         cursor_time = time.time() - BUFFER
 
         while not self._stop:
@@ -148,6 +148,7 @@ class Recorder():
                 '-re',
                 '-stream_loop', '-1',
                 '-i', f'{self.cache_path}list.txt',
+                '-ar', str(SAMPLE_RATE),
                 '-f', 's16le',
                 '-i', 'pipe:',
                 '-map', '1:a', '-map', '0:v',

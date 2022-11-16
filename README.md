@@ -21,7 +21,7 @@ CLIENT_NAME: Name of the bot (default: "recorder")
 STEP: Timestep in seconds between pulling soundchunks, has to be in intervals of 10ms (default: 0.001)
 BUFFER: Incoming sound buffer (in seconds) (default: 2)
 ACTIVE_TIMEOUT: Time in seconds before a user is shown as not active, after sound has stopped (default: 1)
-BITRATE: Bitrate of soundchunks recieved by pymumble (default: 48000)
+SAMPLE_RATE: Sample rate of soundchunks recieved by pymumble (default: 48000)
 ```
 ### Running
 ```
